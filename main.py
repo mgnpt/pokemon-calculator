@@ -12,13 +12,13 @@ types = ('normal', 'fire', 'water', 'electric', 'grass', 'ice', 'fighting',
          'dragon', 'dark', 'steel', 'fairy')
 T1 = ''
 T2 = ''
-weak = OrderedDict()
-strong = OrderedDict()
-immune = OrderedDict()
-neutral = OrderedDict()
-
 
 def classify_types(type1, type2=None):
+    weak = OrderedDict()
+    strong = OrderedDict()
+    immune = OrderedDict()
+    neutral = OrderedDict()
+
     # Get weaknesses for type1
     weaknesses_T1 = eval(type1.capitalize())
 
@@ -44,26 +44,32 @@ def classify_types(type1, type2=None):
     for t in types:
         if t.lower() not in combined_weaknesses and t.lower() not in neutral:
             neutral[t.lower()] = 1.0
+
+    return weak, strong, immune, neutral
+
+
 while True:
-    Q1 = input('Qual é o primeiro type? ').lower()
+    Q1 = input("What's the 1st Type? ").lower()
     if Q1 in types:
         T1 = Q1
         print(f"Type 1: {T1.capitalize()}")
     else:
-        print('Tipo Inválido')
+        print('Invalid Type')
         continue
 
-    Q2 = input('Qual é o segundo type? (Deixa em branco se não houver segundo tipo) ').lower()
+    Q2 = input("What's the 2nd Type? (If there isn't, leave it blank)").lower()
     if Q2 in types:
         T2 = Q2
         print(f"Type 2: {T2.capitalize()}")
-        classify_types(T1, T2)
     elif Q2 == '':
         T2 = None
-        print("Sem segundo tipo.")
+        print("Without 2nd type")
     else:
-        print('Tipo Inválido')
+        print('Invalid Type')
         continue
+
+    # Call the classify_types function and capture the returned values
+    weak, strong, immune, neutral = classify_types(T1, T2)
 
     # Print the classifications
     print("\nWeaknesses:")
@@ -82,15 +88,9 @@ while True:
     for k, v in immune.items():
         print(f"{k.capitalize()}: {v}x")
 
-    # Reset the dictionaries for the next iteration
-    weak.clear()
-    strong.clear()
-    immune.clear()
-    neutral.clear()
-
-    Q3 = input('\nQueres continuar? 1-SIM 2-NÃO ')
+    Q3 = input('\nDo you wish to continue? 1-YES 2-NO ')
     if Q3 == '2':
         break
     elif Q3 != '1':
-        print('Resposta Inválida. Por favor, escolhe 1-SIM ou 2-NÃO.')
+        print('Invalid response. Please choose between 1-YES or 2-NO.')
         continue
