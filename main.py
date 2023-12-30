@@ -45,26 +45,7 @@ def classify_types(type1, type2=None):
         if t.lower() not in combined_weaknesses and t.lower() not in neutral:
             neutral[t.lower()] = 1.0
 
-    # Print the classifications
-    print("\nTakes 0.25x from:")
-    for k, v in weak.items():
-        print(k.capitalize())
-
-    print("\nTakes 1x from:")
-    for k, v in neutral.items():
-        print(k.capitalize())
-
-    print("\nTakes 2x from:")
-    for k, v in strong.items():
-        print(k.capitalize())
-
-    print("\nTakes 0x from:")
-    for k, v in immune.items():
-        print(k.capitalize())
-
     return weak, strong, immune, neutral
-
-
 
 while True:
     Q1 = input("What's the 1st Type? ").lower()
@@ -91,19 +72,19 @@ while True:
 
     # Print the classifications
     print("\nTakes 0.25x from:")
-    for k, v in weak.items():
+    for k in weak.keys():
         print(k.capitalize())
 
     print("\nTakes 1x from:")
-    for k, v in neutral.items():
+    for k in neutral.keys():
         print(k.capitalize())
 
     print("\nTakes 2x from:")
-    for k, v in strong.items():
+    for k in strong.keys():
         print(k.capitalize())
 
     print("\nTakes 0x from:")
-    for k, v in immune.items():
+    for k in immune.keys():
         print(k.capitalize())
 
     Q3 = input('\nDo you wish to continue? 1-YES 2-NO ')
