@@ -45,7 +45,25 @@ def classify_types(type1, type2=None):
         if t.lower() not in combined_weaknesses and t.lower() not in neutral:
             neutral[t.lower()] = 1.0
 
+    # Print the classifications
+    print("\nTakes 0.25x from:")
+    for k, v in weak.items():
+        print(k.capitalize())
+
+    print("\nTakes 1x from:")
+    for k, v in neutral.items():
+        print(k.capitalize())
+
+    print("\nTakes 2x from:")
+    for k, v in strong.items():
+        print(k.capitalize())
+
+    print("\nTakes 0x from:")
+    for k, v in immune.items():
+        print(k.capitalize())
+
     return weak, strong, immune, neutral
+
 
 
 while True:
@@ -72,21 +90,21 @@ while True:
     weak, strong, immune, neutral = classify_types(T1, T2)
 
     # Print the classifications
-    print("\nWeaknesses:")
+    print("\nTakes 0.25x from:")
     for k, v in weak.items():
-        print(f"{k.capitalize()}: {v}x")
+        print(k.capitalize())
 
-    print("\nNeutral:")
+    print("\nTakes 1x from:")
     for k, v in neutral.items():
-        print(f"{k.capitalize()}: {v}x")
+        print(k.capitalize())
 
-    print("\nStrong:")
+    print("\nTakes 2x from:")
     for k, v in strong.items():
-        print(f"{k.capitalize()}: {v}x")
+        print(k.capitalize())
 
-    print("\nImmune:")
+    print("\nTakes 0x from:")
     for k, v in immune.items():
-        print(f"{k.capitalize()}: {v}x")
+        print(k.capitalize())
 
     Q3 = input('\nDo you wish to continue? 1-YES 2-NO ')
     if Q3 == '2':
